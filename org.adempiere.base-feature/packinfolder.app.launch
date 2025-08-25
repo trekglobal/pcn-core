@@ -33,7 +33,7 @@
     <stringAttribute key="productFile" value="/org.adempiere.server-feature/server.product"/>
     <setAttribute key="selected_target_bundles">
         <setEntry value="bcpkix@default:default"/>
-        <setEntry value="bcprov@default:default"/>
+        <setEntry value="bcfips@default:default"/>
         <setEntry value="bcutil@default:default"/>
         <setEntry value="com.diffplug.osgi.extension.sun.misc@default:false"/>
         <setEntry value="com.github.ben-manes.caffeine@default:default"/>

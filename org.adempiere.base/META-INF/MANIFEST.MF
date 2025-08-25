@@ -166,7 +166,7 @@ Bundle-ActivationPolicy: lazy
 Require-Bundle: org.eclipse.equinox.app;bundle-version="1.6.300",
  org.passay;bundle-version="1.6.1",
  net.sf.supercsv.super-csv;bundle-version="2.4.0",
- bcprov;bundle-version="1.81",
+ bcfips;bundle-version="2.1.0",
  org.krysalis.barcode4j;bundle-version="2.1.0",
  groovy;bundle-version="3.0.8",
  com.sun.activation.jakarta.activation;bundle-version="1.2.2",
