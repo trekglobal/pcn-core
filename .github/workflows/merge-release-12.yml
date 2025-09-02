@@ -1,0 +1,67 @@
+# This workflow provides a manual trigger to merge the 'release-12' branch
+# into the 'release-12-fips' branch.
+
+name: 'Manual Merge: release-12 -> release-12-fips'
+
+# This allows the workflow to be triggered manually from the Actions tab in GitHub.
+on:
+  workflow_dispatch:
+    inputs:
+      confirm:
+        description: 'Type "confirm" to proceed with the merge.'
+        required: true
+        default: 'nope'
+      user:
+        description: User name for the merge commit
+        required: true
+      email:
+        description: Email for the merge commit
+        required: true
+
+jobs:
+  merge_branches:
+    runs-on: ubuntu-latest
+    # Check if the user typed "confirm" before running the job
+    if: github.event.inputs.confirm == 'confirm'
+    
+    # Grant permissions for the workflow to read content and write content (push merge commit)
+    permissions:
+      contents: write
+
+    steps:
+      - name: 'Checkout Repository'
+        # This action checks out your repository code so the workflow can access it.
+        uses: actions/checkout@v4
+        with:
+          # Fetch all history for all tags and branches.
+          # This is important for the merge operation.
+          fetch-depth: 0
+
+      - name: 'Set up Git User'
+        # Configure a user name and email for the merge commit.
+        run: |
+          git config user.name github.event.inputs.user
+          git config user.email github.event.inputs.email
+
+      - name: 'Perform the Merge'
+        # This multi-line step checks out the target branch, merges the source, and pushes.
+        run: |
+          echo "Switching to the target branch: release-12-fips"
+          git checkout release-12-fips
+
+          echo "Attempting to merge changes from origin/release-12..."
+          # The --no-ff flag ensures a merge commit is always created for traceability.
+          # If a merge conflict occurs, this command will fail and stop the workflow.
+          git merge origin/release-12 --no-ff -m "chore: Merge branch 'release-12' into 'release-12-fips'"
+
+          echo "Pushing merged changes to the remote repository..."
+          git push origin release-12-fips
+
+      - name: 'Merge Successful'
+        if: success()
+        run: echo "The 'release-12' branch was successfully merged into 'release-12-fips'."
+
+      - name: 'Merge Failed'
+        if: failure()
+        run: echo "The merge failed. This is likely due to merge conflicts. Please resolve them locally and push the changes manually."
+
