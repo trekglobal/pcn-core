@@ -36,8 +36,6 @@ import javax.crypto.spec.PBEKeySpec;
 
 import org.adempiere.base.Core;
 import org.adempiere.base.IKeyStore;
-import org.bouncycastle.crypto.generators.Argon2BytesGenerator;
-import org.bouncycastle.crypto.params.Argon2Parameters;
 
 /**
  * Default implementation of {@link SecureInterface} for encryption and decryption.
@@ -472,26 +470,6 @@ public class Secure implements SecureInterface
 			SecretKeyFactory factory = SecretKeyFactory.getInstance("PBKDF2WithHmacSHA256");
 			byte[] hash = factory.generateSecret(spec).getEncoded();
 			return convertToHexString(hash);
-		}
-		else if (ARGON2.equalsIgnoreCase(algorithm))
-		{
-			int iterations = 2;
-		    int memLimit = 66536;
-		    int hashLength = 32;
-		    int parallelism = 1;
-		        
-		    Argon2Parameters.Builder builder = new Argon2Parameters.Builder(Argon2Parameters.ARGON2_id)
-		      .withVersion(Argon2Parameters.ARGON2_VERSION_13)
-		      .withIterations(iterations)
-		      .withMemoryAsKB(memLimit)
-		      .withParallelism(parallelism)
-		      .withSalt(salt);
-		        
-		    Argon2BytesGenerator generate = new Argon2BytesGenerator();
-		    generate.init(builder.build());
-		    byte[] hash = new byte[hashLength];
-		    generate.generateBytes(password.getBytes(StandardCharsets.UTF_8), hash, 0, hash.length);
-		    return convertToHexString(hash);		    		        
 		}
 		else
 		{
