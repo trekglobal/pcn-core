@@ -47,7 +47,7 @@ public class MSysConfig extends X_AD_SysConfig
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = 9163171479192884123L;
+	private static final long serialVersionUID = -330972530035864592L;
 
 	/** Constant for Predefine System Configuration Names (in alphabetical order) */
 	
@@ -95,6 +95,7 @@ public class MSysConfig extends X_AD_SysConfig
     public static final String CHECK_CREDIT_ON_CASH_POS_ORDER = "CHECK_CREDIT_ON_CASH_POS_ORDER";
     public static final String CHECK_CREDIT_ON_PREPAY_ORDER = "CHECK_CREDIT_ON_PREPAY_ORDER";
     public static final String CLIENT_ACCOUNTING = "CLIENT_ACCOUNTING";
+    public static final String CSV_EXPORT_SANITIZATION = "CSV_EXPORT_SANITIZATION";
     public static final String DASHBOARD_LAYOUT_ORIENTATION = "DASHBOARD_LAYOUT_ORIENTATION";
     public static final String DB_READ_REPLICA_NORMAL_MAX_ITERATIONS = "DB_READ_REPLICA_NORMAL_MAX_ITERATIONS";
     public static final String DB_READ_REPLICA_NORMAL_TIMEOUT_IN_MILLISECONDS = "DB_READ_REPLICA_NORMAL_TIMEOUT_IN_MILLISECONDS";
@@ -196,6 +197,7 @@ public class MSysConfig extends X_AD_SysConfig
     public static final String RecentItems_MaxShown = "RecentItems_MaxShown";
 	public static final String REPORT_LOAD_TIMEOUT_IN_SECONDS = "REPORT_LOAD_TIMEOUT_IN_SECONDS";
     public static final String REPORT_SWAP_MAX_ROWS = "REPORT_SWAP_MAX_ROWS";
+    public static final String SECURITY_DASHBOARD_LEGACY_KEY_WARNING = "SECURITY_DASHBOARD_LEGACY_KEY_WARNING";
     public static final String SHIPPING_DEFAULT_WEIGHT_PER_PACKAGE = "SHIPPING_DEFAULT_WEIGHT_PER_PACKAGE";
     public static final String STANDARD_REPORT_FOOTER_TRADEMARK_TEXT = "STANDARD_REPORT_FOOTER_TRADEMARK_TEXT";
     public static final String START_VALUE_BPLOCATION_NAME = "START_VALUE_BPLOCATION_NAME";
